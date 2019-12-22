@@ -42,7 +42,7 @@ $ok = true;
 				<tbody>
 					<tr class="table-primary"><?php
 			try {
-				$array = explode("\n", file_get_contents('/home/pi/share/py/temps.txt'));
+				$array = explode("\n", file_get_contents('/home/pi/share/php/temp/py/temps.txt'));
 				//print("<pre>".print_r($array, true)."</pre>");
 				$index = (int)$array[1];
 				$queue = explode('|', $array[2]);

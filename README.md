@@ -111,39 +111,84 @@ Create new index.php
 
 # Set up Temperature Logger Website
 
-```bash
-mkdir share/php/temp
-#Copy your website to **share/php/temp** folder, should have this structure
+> Copy your website to **share/php/temp** folder, should have this structure.
 
+```bash
+#Create website source folder
+
+mkdir share/php/temp
+
+pi@raspberry:~ $ tree share/php/temp
 share/php/temp
-├───css
-├───img
-├───js
-|   └───app.js
-├───libs
-|   ├───bootstrap
-|   |   ├───css
-|   |   |   ... files
-|   |   └───js
-|   |       ... files
-|   ├───canvasjs
-|   |       ... files
-|   └───jquery
-|           ... files
-├───py
-|   
-├───favicon.ico
-├───get_temp.php
-├───index.html
-├───index.php
-├───LICENSE
-├───README.md
-├───ssh
-└───wpa_supplicant.conf
+├── css
+├── favicon.ico
+├── get_temp.php
+├── img
+├── index.html
+├── index.php
+├── js
+│   └── app.js
+├── launcher.sh
+├── libs
+│   ├── bootstrap
+│   │   ├── css
+│   │   │   ├── bootstrap.css
+│   │   │   ├── bootstrap.css.map
+│   │   │   ├── bootstrap-grid.css
+│   │   │   ├── bootstrap-grid.css.map
+│   │   │   ├── bootstrap-grid.min.css
+│   │   │   ├── bootstrap-grid.min.css.map
+│   │   │   ├── bootstrap.min.css
+│   │   │   ├── bootstrap.min.css.map
+│   │   │   ├── bootstrap-reboot.css
+│   │   │   ├── bootstrap-reboot.css.map
+│   │   │   ├── bootstrap-reboot.min.css
+│   │   │   └── bootstrap-reboot.min.css.map
+│   │   └── js
+│   │       ├── bootstrap.bundle.js
+│   │       ├── bootstrap.bundle.js.map
+│   │       ├── bootstrap.bundle.min.js
+│   │       ├── bootstrap.bundle.min.js.map
+│   │       ├── bootstrap.js
+│   │       ├── bootstrap.js.map
+│   │       ├── bootstrap.min.js
+│   │       └── bootstrap.min.js.map
+│   ├── canvasjs
+│   │   ├── canvasjs.min.js
+│   │   ├── canvasjs.react.js
+│   │   ├── instruction.txt
+│   │   └── jquery.canvasjs.min.js
+│   └── jquery
+│       ├── jquery-3.4.1.min.js
+│       ├── jquery-3.4.1.min.map
+│       └── jquery-migrate-3.1.0.js
+├── LICENSE
+├── new features.txt
+├── py
+│   └── temps.py
+├── README.md
+├── ssh
+└── wpa_supplicant.conf
 ```
 
-```yaml
-{
+> Everytime you update your source folder files in **share/php/temp** you should copy to the **Apache PHP** folder with:
+
+```bash
+	#One time
+	mkdir /var/www/html/temp
+	cp share/php/temp/favicon.ico /var/www/html/temp/favicon.ico
 	
-   "this-json": "looks awesome..."
-}
+	#Every time you update files
+	cp -r -v share/php/temp/libs/ /var/www/html/temp/
+	cp -r -v share/php/temp/js/ /var/www/html/temp/
+	cp -r -v share/php/temp/css/ /var/www/html/temp/
+	cp -r -v share/php/temp/img/ /var/www/html/temp/
+
+	cp share/php/temp/index.php /var/www/html/temp/index.php
+	cp share/php/temp/get_temp.php /var/www/html/temp/get_temp.php
+	cp share/php/temp/index.html /var/www/html/temp/index.html
+```
+
+> Follow instructions in **launcher.sh** to execute service every minute. This service calls **share/php/temp/py/temps.py** Python file, and it updates the file **share/php/temp/py/temps.txt** with temperatures every minuite.
+
+> Next step is to start fan when temperature is over a threshold.
