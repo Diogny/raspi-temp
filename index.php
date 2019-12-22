@@ -1,9 +1,6 @@
 <?php
 //$c = $_SESSION['controller'];
 $pageTitle = isset($c) ? $c->pageTitle : "Temperature logger";
-//$min = $r['debug']['min'];
-//header('Access-Control-Allow-Origin: http://diogny.com, http://mobile.diogny.com');
-//<link href="highlight.css" type="text/css" rel="stylesheet">
 
 //copy this file to apache server
 //	 cp share/php/temps.php /var/www/html/temp/temps.php
@@ -107,15 +104,7 @@ $ok = true;
 ?>
 		</div>
 <?php
-		//'{ x: new Date()' +  
 			$now = new DateTime();
-			//$now->sub(new DateInterval('P59M'));
-			/*print('<p>'.strftime($now).'</p>');
-			$dt = getdate($now);
-			print("<pre>".print_r($dt, true)."</pre>");
-			$k = new Date( $dt.year, $dt.mon-1, $dt.mday, $dt.hours, $dt.minutes, 0);
-			echo $k;
-			print("<p>".$k."</p>");*/
 ?>
     </main>
     <script type="text/javascript" src="<?php echo __ROOT__?>libs/jquery/jquery-3.4.1.min.js"></script>
@@ -169,16 +158,6 @@ $ok = true;
 		chart.render();
 				
 		$.getJSON( "/temp/get_temp.php", function( data ) {
-		  /*var items = [];
-		  $.each( data, function( key, val ) {
-			items.push( "<li id='" + key + "'>" + val + "</li>" );
-		  });
-		 
-		  $( "<ul/>", {
-			"class": "my-new-list",
-			html: items.join( "" )
-		  }).appendTo( "body" );
-		  */
 		  console.log(data);
 		});
 	</script>
