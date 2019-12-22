@@ -191,4 +191,10 @@ share/php/temp
 
 > Follow instructions in **launcher.sh** to execute service every minute. This service calls **share/php/temp/py/temps.py** Python file, and it updates the file **share/php/temp/py/temps.txt** with temperatures every minuite.
 
+> You should be able to see the result in your PC or Mobile browser
+
+Desktop | Mobile
+------------ | -------------
+![title](img/Screenshot_01.png) | ![title](img/Screenshot_02.jpg)
+
 > Next step is to start fan when temperature is over a threshold.
